@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halaman Login - Bank BRI</title>
+    <style>
+   /* style.css - dengan peningkatan responsivitas */
+body {
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0; /* Abu-abu muda */
+}
+
+.container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 400px; /* Batasi lebar maksimum agar tetap rapi di layar besar */
+    width: 90%; /* Ambil 90% lebar layar, terutama di perangkat seluler */
+}
+
+.logo img {
+    max-width: 150px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+button[type="submit"] {
+    background-color: #f26522; /* Oranye BRI */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%; /* Lebar penuh di perangkat seluler */
+}
+
+.lupa-password {
+    margin-top: 15px;
+}
+
+.lupa-password a {
+    color: #007bff; /* Biru BRI */
+    text-decoration: none;
+}
+
+/* Media query untuk tampilan di layar yang lebih kecil (misalnya, ponsel) */
+@media (max-width: 500px) {
+    .container {
+        padding: 20px; /* Kurangi padding sedikit di layar kecil */
+    }
+
+    .logo img {
+        max-width: 120px; /* Perkecil logo di layar kecil */
+    }
+
+    input[type="text"], input[type="password"] {
+        font-size: 16px; /* Perbesar ukuran font input di layar kecil */
+    }
+}
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="logo">
+            <img src="logo-pkk.png" alt="Logo Bank BRI">
+        </div>
+
+        <form action="proses_login.php" method="post"> 
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <button type="submit">Login</button>
+        </form>
+
+        <div class="lupa-password">
+            <a href="#">Lupa Password?</a>
+        </div>
+    </div>
+
+    <script>
+        const form = document.querySelector('form');
+    
+        // Daftar username, password, dan URL tujuan yang valid
+        const validCredentials = [
+            { username: 'pkkromedan', password: 'pkkromedan', url: 'https://landinganggota.carrd.co' },
+            { username: 'pkkmph', password: 'pkkmph', url: 'https://landinganggota.carrd.co' },
+            { username: 'pkkismud', password: 'pkkismud', url: 'https://www.example.com' },
+            { username: 'pkktarutung', password: 'pkktarutung', url: 'https://landinganggota.carrd.co' },
+            { username: 'pkksmraja', password: 'pkksmraja', url: 'https://landinganggota.carrd.co' },
+            { username: 'pkkthamrin', password: 'pkkthamrin', url: 'https://landinganggota.carrd.co' },
+            { username: 'pkkbinjai', password: 'pkkbinjai', url: 'https://landinganggota.carrd.co' },
+            { username: 'pkkaiw', password: 'pkkaiw', url: 'https://landinganggota.carrd.co' },
+            { username: 'pkkgatsu', password: 'pkkgatsu', url: 'https://landinganggota.carrd.co' },
+            { username: 'pkksibolga', password: 'pkksibolga', url: 'https://landinganggota.carrd.co' },
+            { username: 'pkksiantar', password: 'pkksiantar', url: 'https://landinganggota.carrd.co' },
+            { username: 'pkksibuhuan', password: 'pkksibuhuan', url: 'https://landinganggota.carrd.co' },
+            { username: 'pkkgsitoli', password: 'pkkgsitoli', url: 'https://landinganggota.carrd.co' },
+            { username: 'pkkkotapinang', password: 'pkkkotapinang', url: 'https://landinganggota.carrd.co' },
+            { username: 'pkkbalige', password: 'pkkbalige', url: 'https://landinganggota.carrd.co' },
+            { username: 'pkkperdagangan', password: 'pkkperdagangan', url: 'https://landinganggota.carrd.co' },
+            { username: 'pkkpsidempuan', password: 'pkkpsidempuan', url: 'https://landinganggota.carrd.co' },
+            { username: 'pkkpakam', password: 'pkkpakam', url: 'https://landinganggota.carrd.co' },
+            { username: 'pkkkisaran', password: 'pkkkisaran', url: 'https://landinganggota.carrd.co' },
+            { username: 'pkkkabanjahe', password: 'pkkkabanjahe', url: 'https://landinganggota.carrd.co' },
+            { username: 'pkkparapat', password: 'pkkparapat', url: 'https://landinganggota.carrd.co' },
+            { username: 'pkkstabat', password: 'pkkstabat', url: 'https://landinganggota.carrd.co' },
+            { username: 'pkkmph', password: 'pkkmph', url: 'https://landinganggota.carrd.co' },
+            // Tambahkan lebih banyak kredensial dengan URL tujuan masing-masing
+        ];
+    
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+    
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+    
+            // Cari kredensial yang cocok dan dapatkan URL tujuan
+            const matchingCredential = validCredentials.find(credential => 
+                credential.username === username && credential.password === password
+            );
+    
+            if (matchingCredential) {
+                window.location.href = matchingCredential.url; // Arahkan ke URL yang sesuai
+            } else {
+                alert('Username atau password tidak sesuai');
+                location.reload();
+            }
+        });
+    </script>
+
+</body>
+</html>
